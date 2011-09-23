@@ -39,7 +39,8 @@ Feature: Capybara Javascript Drivers
 
     Examples:
       | Gemfile extra                    | env.rb extra       |
-      | ''  | '' |
+      | ''  | Capybara.javascript_driver = :rack_test |
+      | gem "capybara-webkit" | Capybara.javascript_driver = :webkit |
 
   Scenario Outline: Mixed DB access
     Given I write to "features/create_appointment.feature" with:
@@ -83,5 +84,6 @@ Feature: Capybara Javascript Drivers
 
     Examples:
       | Gemfile extra                    | env.rb extra       |
-      | ''  | '' |
+      | ''  | Capybara.javascript_driver = :rack_test |
+      | gem "capybara-webkit" | Capybara.javascript_driver = :webkit |
 

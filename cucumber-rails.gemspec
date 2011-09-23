@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency('cucumber', '~> 1.0.6')
   s.add_runtime_dependency('nokogiri', '>= 1.5.0')
-  s.add_runtime_dependency('capybara', '>= 1.1.1')
+  s.add_runtime_dependency('capybara', '~> 1.0')
   s.add_development_dependency('rails', '>= 3.1.0')
   s.add_development_dependency('rake', '>= 0.9.2')
   s.add_development_dependency('bundler', '>= 1.0.18')
@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency('database_cleaner', '>= 0.6.7')
   s.add_development_dependency('mongoid', '>= 2.2.0')
   s.add_development_dependency('bson_ext', '>= 1.3.1')
+  s.add_development_dependency('capybara-webkit', '>= 0.6.1')
 
   # Various Stuff that Rails 3.1 puts inside apps.
   s.add_development_dependency('turn', '>= 0.8.2')
