@@ -1,3 +1,51 @@
+## [v1.1.0](https://github.com/cucumber/cucumber-rails/compare/v1.0.6...v1.1.0)
+
+### Removed features
+
+The following files will no longer be generated if you are running `rails generate cucumber:install`:
+
+* features/step_definitions/web_steps.rb
+* features/support/paths.rb
+* features/support/selectors.rb
+
+The reason behind this is that the steps defined in `web_steps.rb` leads people to write scenarios of a
+very imperative nature that are hard to read and hard to maintain. Cucumber scenarios should not be a series
+of steps that describe what a user clicks. Instead, they should express what a user *does*. Example:
+
+    Given I have signed up as "user@host.com"
+
+with a Step Definition that perhaps looks like this:
+
+    Given /^I have signed up as "([^"]*)"$/ do |email|
+      visit(signup_path)
+      fill_in('Email', :with => email)
+      fill_in('Email', :with => email)
+      fill_in('Password', :with => 's3cr3t')
+      fill_in('Password Confirmation', :with => 's3cr3t')
+      click_button('Sign up')
+    end
+
+Moving user interface details from the scenarios and down to the step definitions makes scenarios
+much easier to read. If you change the user interface you only have to change a step definition or two
+instead of a lot of scenarios that explicitly describe how to sign up.
+
+You can learn more about the reasoning behind this change at the following links:
+
+* [Cucumber mailing list: Removing web_steps.rb in Cucumber 1.1.0](http://groups.google.com/group/cukes/browse_thread/thread/26f80b93c94f2952)
+* [Cucumber-Rails issue #174: Remove web_steps.rb since it encourages people to write poor tests.](https://github.com/cucumber/cucumber-rails/issues/174)
+* [Refuctoring your Cukes by Matt Wynne](http://skillsmatter.com/podcast/home/refuctoring-your-cukes)
+* [Imperative vs Declarative Scenarios in User Stories by Ben Mabey](http://benmabey.com/2008/05/19/imperative-vs-declarative-scenarios-in-user-stories.html)
+* [Whose domain is it anyway? by Dan North](http://dannorth.net/2011/01/31/whose-domain-is-it-anyway/)
+* [You're Cuking it Wrong by Jonas Nicklas](http://elabs.se/blog/15-you-re-cuking-it-wrong)
+
+You can learn more about what Capybara has to offer in Capybara's [README](https://github.com/jnicklas/capybara).
+
+## [v1.0.6](https://github.com/cucumber/cucumber-rails/compare/v1.0.5...v1.0.6)
+
+### Bugfixes
+* Fix deprecation warnings ([#169](https://github.com/cucumber/cucumber-rails/issues/169), [#170](https://github.com/cucumber/cucumber-rails/pull/170) Micah Geisel)
+* Deprecate #tableish. The Capybara::Node::Finders API has obsoleted the need for it. ([#145](https://github.com/cucumber/cucumber-rails/issues/145) Aslak Hellesøy)
+
 ## [v1.0.5](https://github.com/cucumber/cucumber-rails/compare/v1.0.4...v1.0.5)
 
 ### Bugfixes
@@ -12,11 +60,11 @@
 
 ### Bugfixes
 * sqlite3-ruby is now sqlite3 ([#158](https://github.com/cucumber/cucumber-rails/pull/158) Trung Le)
-* Broken link in the USAGE file of the features generator ((#156)[https://github.com/cucumber/cucumber-rails/pull/156] Pablo Alonso García)
-* Rails destroy cucumber:feature deletes the steps folder, even though it's not empty. ((#154)[https://github.com/cucumber/cucumber-rails/pull/154], (#111)[https://github.com/cucumber/cucumber-rails/issues/111] mblake)
-* Adjust select_date, select_time xpaths so they work when scoped in the document ((#151)[https://github.com/cucumber/cucumber-rails/pull/151] Thomas Walpole)
-* Extend javascript emulation to handle rails CSRF protection ((#164)[https://github.com/cucumber/cucumber-rails/pull/164] Jonathon M. Abbott)
-* Add steps for finding fields with errors ((#162)[https://github.com/cucumber/cucumber-rails/pull/162] Mike Burns)
+* Broken link in the USAGE file of the features generator ([#156](https://github.com/cucumber/cucumber-rails/pull/156) Pablo Alonso García)
+* Rails destroy cucumber:feature deletes the steps folder, even though it's not empty. ([#154](https://github.com/cucumber/cucumber-rails/pull/154]), [#111](https://github.com/cucumber/cucumber-rails/issues/111) mblake)
+* Adjust select_date, select_time xpaths so they work when scoped in the document ([#151](https://github.com/cucumber/cucumber-rails/pull/151) Thomas Walpole)
+* Extend javascript emulation to handle rails CSRF protection ([#164](https://github.com/cucumber/cucumber-rails/pull/164) Jonathon M. Abbott)
+* Add steps for finding fields with errors ([#162](https://github.com/cucumber/cucumber-rails/pull/162) Mike Burns)
 
 ## [v1.0.2](https://github.com/cucumber/cucumber-rails/compare/v1.0.1...v1.0.2)
 
