@@ -1,3 +1,4 @@
+#!/bin/bash
 function retry {
    nTrys=0
    maxTrys=5
