@@ -7,7 +7,7 @@ branches:
   only:
     - master
 # Needed for selenium browser
-before_script: sh ./retry_selenium_browser_start.sh
+before_script: sh -e /etc/init.d/xvfb start
 
 
 notifications:
